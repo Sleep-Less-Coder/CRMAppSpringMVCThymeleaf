@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Save a Customer</title>
+</head>
+
+<body>
+	<h1>Save a customer</h1>
+	<form action="#" th:action="@{/saveCustomer}" th:object="${customer}" method="post">
+		<input type="hidden" th:value="${customer.id}" th:field="*{id}"/>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" th:field="*{firstName}" /></td>
+				<td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error message</td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" th:field="*{lastName}" /></td>
+				<td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error message</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" th:field="*{email}" /></td>
+				<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>
+			</tr>
+			<tr>
+				<td><button type="submit">Save</button></td>
+			</tr>
+		</table>
+	</form>
+	
+	<a th:href="@{/}">Go back to list</a>
+</body>
+
+</html>

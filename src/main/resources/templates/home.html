@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Home page</title>
+</head>
+<body>
+	<h1>Customers Database | Web App</h1>
+	<br />
+	<a th:href="@{/showFormForAdd}">Add Customer</a>
+	<br />
+	<br />
+	<form th:action="@{/search}" method="POST">
+		Search customer: <input type="text" name="searchName" /> <input
+			type="submit" value="Search" />
+	</form>
+	<br />
+	<table border="1">
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="customer : ${customers}">
+			<td th:text="${customer.firstName}"></td>
+			<td th:text="${customer.lastName}"></td>
+			<td th:text="${customer.email}"></td>
+			<td><a
+				th:href="@{/showFormForUpdate(customerId=${customer.id})}">Update</a>
+				| <a th:href="@{/delete(customerId=${customer.id})}"
+				onClick="if (!(confirm('Are you sure you want to delete this customer?'))) return false;">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>
